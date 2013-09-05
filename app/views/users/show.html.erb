@@ -1,0 +1,26 @@
+<div class="row box">
+  <h2 class="title"><%= t("users.title") %></h2>
+  <div class="span3">
+    <%= image_tag @user.avatar_url(:thumb) %>
+  </div>
+  <div class="span6 ">
+    <table class="table table-hover">
+      <tr>
+        <td><%= t("users.name") %></td>
+        <td><%= @user.name -%></td>
+      </tr>
+      <tr>
+        <td><%= t("users.email") %></td>
+        <td><%= @user.email -%></td>
+      </tr>
+      <tr>
+        <td><%= t("users.last_sign_in") %></td>
+        <td><%= @user.last_sign_in_at -%></td>
+      </tr>
+      <tr>
+        <td><%= t("users.last_sign_in_ip") %></td>
+        <td><%= @user.last_sign_in_ip -%></td>
+      </tr>
+    </table>
+  </div>
+</div>
