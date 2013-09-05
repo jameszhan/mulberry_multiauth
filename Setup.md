@@ -66,14 +66,20 @@
 
 ###Devise Configure & DB Setup
 
-> rails g devise:install
-> rails g devise User
-> rails g model authentication user:belongs_to uid:string provider:string
+> rails g devise:install  
+  
+> rails g devise User 
+   
+> rails g model authentication user:belongs_to uid:string provider:string access_token:string
+
 > rails g migration add_avatar_to_users avatar:string crop_x:integer crop_y:integer crop_w:integer crop_h:integer
+
 > rails g uploader Avatar
+
 > rails g simple_form:install --bootstrap
+
 > rails g controller users
-> rails g devise:views
+
 > rails g migration addNameToUsers
 
 
