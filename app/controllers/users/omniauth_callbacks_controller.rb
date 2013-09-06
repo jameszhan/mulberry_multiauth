@@ -9,10 +9,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end   
   end
   
-  alias_method :github, :auth
-  alias_method :weibo, :auth
-  alias_method :taobao, :auth
-  alias_method :qq_connect, :auth
+  MulberryMultiauth.providers.each do |provider, config|
+    alias_method provider.to_sym, :auth
+  end
   
   protected
     def login_with_omniauth

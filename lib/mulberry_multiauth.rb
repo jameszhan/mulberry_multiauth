@@ -5,4 +5,7 @@ require 'bootstrap-sass'
 require 'jquery-crop-rails'
 
 module MulberryMultiauth
+  class << self
+    attr_accessor :providers
+  end
 end
