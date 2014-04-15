@@ -24,8 +24,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rmagick'
   s.add_dependency 'simple_form'
   s.add_dependency 'omniauth'
-  s.add_dependency 'bootstrap-sass'
-  
+  s.add_dependency 'bootstrap-sass-rails'
+    
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'factory_girl_rails'
 

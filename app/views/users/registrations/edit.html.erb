@@ -1,37 +1,35 @@
-<div class="box">
+<div class="box row">
   <h2 class="title"><%= t("users.edit_profile", default: "Edit #{resource_name.to_s.humanize}") %></h2>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch, class: "form-horizontal col-sm-7" }) do |f| %>
   <%= render "shared/error_messages", :target => resource  %>
 
-  <div class="form-inputs">
-    <%= f.input :name, :required => true, autofocus: true %>
-    <%= f.input :email, :required => true, :autofocus => true, disabled: true %>
+	<%= f.input :name, :required => true, autofocus: true %>
+	<%= f.input :email, :required => true, :autofocus => true, disabled: true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-    
-    <% if resource.login_type == 'password' %>    
-      <%= f.input :password, :autocomplete => "off", :hint => "leave blank if you don't want to change it.", :required => false %>
-      <%= f.input :password_confirmation, :required => false %>
-      <%= f.input :current_password, label: t("devise.registrations.current_password"), :hint => t("devise.registrations.current_password_hint"), :required => true %>
-    <% end %>
-    <%= f.input :avatar %>
-  </div>
+	<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+	  <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+	<% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit, t("common.save", default: "Update") %>
-  </div>
+	<% if resource.login_type == 'password' %>    
+	  <%= f.input :password, :autocomplete => "off", :hint => "leave blank if you don't want to change it.", :required => false %>
+	  <%= f.input :password_confirmation, :required => false %>
+	  <%= f.input :current_password, label: t("devise.registrations.current_password"), :hint => t("devise.registrations.current_password_hint"), :required => true %>
+	<% end %>
+	<%= f.input :avatar %>
+	
+	<%= f.button :submit, t("common.save", default: "Update"), class: "btn btn-primary btn-sm" %>
+<% end %>
+<% if resource.avatar.present? %>
+<div class="col-md-offset-3 col-sm-2">
+  <h2 class="title"><%= link_to "编辑头像", avatar_user_path(resource) %></a></h2>
+  <%= link_to image_tag(current_user.avatar_url(:thumb), size: "120x120"), avatar_user_path(resource) %>		
+</div>
 <% end %>
 </div>
 
-<ul class="box logins">
-  <% if resource.avatar.present? %>
-    <%= link_to "编辑头像", avatar_user_path(resource) %><br />
-    <%= link_to image_tag(current_user.avatar_url(:thumb), size: "60x60"), avatar_user_path(resource) %>
-  <% end %>
-  <br /><br />
-绑定第三方账号:
+<div class="row box col-sm-6">
+<ul class="box">
+<h2 class="title">绑定第三方账号</h2>
 <% User.omniauth_providers.each do |provider| -%>
   <% if resource.bind_auth?(provider) %>
     <li><%= link_to unbind_auth_users_path(provider) do -%>Unbind <%= provider.to_s.humanize %><% end -%></li>    
@@ -40,11 +38,12 @@
   <% end %>
 <% end -%>
 </ul>
+<div class="box">
+	<h2 class="title"><%= t("devise.registrations.destroyed_title") %></h2>
+	<p><%= t("common.unhappy") %>? <%= link_to t("devise.registrations.destroyed_title"), registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+	<%= link_to t("common.back"), :back %>
+</div>
+</div>
 
-<h3><%= t("devise.registrations.destroyed_title") %></h3>
-
-<p><%= t("common.unhappy") %>? <%= link_to t("devise.registrations.destroyed_title"), registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-
-<%= link_to t("common.back"), :back %>
 
 

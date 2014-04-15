@@ -5,12 +5,12 @@ $(document).ready ->
 #  new AvatarCropper()
 
 class AvatarCropper
-  constructor: ->
+  constructor: (x = 0, y = 0, w = 160, h = 160) ->
     $('#cropbox').Jcrop
       onSelect: @update
       onChange: @update
       aspectRatio: 1
-      setSelect: [0, 0, 160, 160]
+      setSelect: [x, y, w, h]
       
   update: (coords) =>
     $('#user_crop_x').val(coords.x)

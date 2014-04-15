@@ -1,22 +1,21 @@
 <div class="box crop">
   <h2 class="title">Crop Avatar</h2>
   <% @user = resource %>
-  <%= image_tag @user.avatar_url(:large), id: "cropbox", class: "disabled" %>
-
-  <div class="preview-box">
-    <strong>预览</strong>
-    <div style="width:160px; height:160px; overflow:hidden">
-      <%= image_tag @user.avatar.url(:large), :id => "preview" %>
-    </div>
-  </div>
-
-  <%= simple_form_for @user, url: crop_user_path(@user) do |f| %>
-    <% %w[x y w h].each do |attribute| %>
-      <%= f.input "crop_#{attribute}", as: :hidden %>    
-    <% end %>  
-  
-    <div class="actions">
-      <%= f.submit "Crop", class: "btn btn-small btn-primary" %>
-    </div>
-  <% end %>
+	<div class="row">
+		<div class="col-md-9">
+	  <%= image_tag @user.avatar_url(:large), id: "cropbox", class: "disabled" %>
+		</div>
+	  <div class="preview-box col-md-3">
+	    <strong>预览</strong>
+	    <div style="width:160px; height:160px; overflow:hidden; border: 1px solid #f0f0f0">
+	      <%= image_tag @user.avatar.url(:large), :id => "preview" %>
+	    </div>
+		  <%= simple_form_for @user, url: crop_user_path(@user) do |f| %>
+		    <% %w[x y w h].each do |attribute| %>
+		      <%= f.input "crop_#{attribute}", as: :hidden %>    
+		    <% end %>
+				<%= f.submit "Crop", class: "btn btn-primary btn-sm" %>
+		  <% end %>
+	  </div>
+	</div>
 </div>

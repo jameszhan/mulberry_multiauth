@@ -1,7 +1,4 @@
-/*
- *= require bootstrap
- *= require bootstrap-responsive 
- *= require jquery-crop
- *= require default
- *= require items
-*/
+@import "twitter/bootstrap";
+@import "jquery-crop";
+@import 'items';
+@import 'default';
