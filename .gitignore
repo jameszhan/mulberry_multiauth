@@ -16,6 +16,11 @@ test/tmp
 test/version_tmp
 tmp
 
+*.iws
+*.ipr
+*.iml
+.idea
+
 # Ignore bundler config.
 .bundle
 
